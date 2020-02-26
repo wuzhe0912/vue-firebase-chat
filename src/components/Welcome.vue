@@ -2,12 +2,12 @@
   div.welcome.container
     div.card
       div.card-content.center-align
-        h2.teal-text Welcome
+        h2.teal-text Welcome Pitt's Chat
         form(@submit.prevent="enterChat")
-          label(for="name") Enter your name：
+          label(for="name") Please Enter your name：
           input(type="text" name="name" v-model="name")
           p.red-text(v-if="feedback") {{ feedback }}
-          button.btn.teal Enter
+          button.btn.teal Go!
 </template>
 
 <script>
@@ -33,7 +33,6 @@ export default {
 <style scoped>
   .welcome {
     max-width: 500px;
-    margin-top: 100px;
   }
   .welcome h2 {
     font-size: 3em;

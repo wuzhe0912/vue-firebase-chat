@@ -61,7 +61,7 @@ export default {
 .messages {
   display: flex;
   flex-direction: column;
-  max-height: 400px;
+  max-height: 300px;
   overflow: auto;
 }
 .message-list {
