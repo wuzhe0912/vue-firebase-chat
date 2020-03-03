@@ -3,7 +3,7 @@ module.exports = {
     config
       .plugin('html')
       .tap((args) => {
-        args[0].title = '皮特der聊天室'
+        args[0].title = 'CHAT'
         return args
       })
   }

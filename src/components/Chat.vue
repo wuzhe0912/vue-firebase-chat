@@ -8,9 +8,9 @@
         ul.messages(v-if="!isLoading" v-chat-scroll)
           li.message-list(v-for="node in message" :key="node.id")
             div.message-wrap
-              span.teal-text {{ node.name }}
-              span.grey-text.text-darken-3.message-content {{ node.content }}
-            span.grey-text.time {{ node.timestamp }}
+              div.teal-text.message-name {{ node.name }}
+              div.grey-text.text-darken-3.message-content {{ node.content }}
+            div.grey-text.time {{ node.timestamp }}
       div.card-action
         NewMessage(:name="name")
 </template>
@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .loading {
   display: flex;
   justify-content: center;
@@ -118,19 +118,26 @@ export default {
   max-height: 300px;
   overflow: auto;
 }
+.messages li {
+  margin-top: 20px;
+}
 .message-list {
   display: flex;
   flex-direction: column;
-  margin: 8px 0;
+  line-height: 24px;
 }
-.message-wrap span {
-  font-size: 1.2em;
+.message-wrap {
+  display: flex;
+}
+.message-name,
+.message-content {
+  font-size: 20px;
 }
 .message-content {
-  margin-left: 5px;
+  margin-left: 8px;
 }
 .time {
   display: flex;
-  font-size: .8em;
+  font-size: 12px;
 }
 </style>

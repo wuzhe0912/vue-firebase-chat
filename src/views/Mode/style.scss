@@ -1,0 +1,25 @@
+@import '@/assets/scss/share.scss';
+
+.btn__list {
+  display: flex;
+  flex-direction: column;
+  margin-top: to-rem(53px);
+}
+
+.mode__btn {
+  color: $btn-dark;
+  margin-top: to-rem(20px);
+  border: 1px solid $btn-border;
+
+  &:hover {
+    color: $light;
+    background: $btn-dark;
+    opacity: .7;
+  }
+}
+
+.start__btn {
+  margin-top: to-rem(254px);
+  background: $header-bg;
+  color: $light;
+}

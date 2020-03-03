@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
+// styles
+import '@/assets/scss/style.scss'
+
 import VueChatScroll from 'vue-chat-scroll'
 
 Vue.use(VueChatScroll)

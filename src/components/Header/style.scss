@@ -1,0 +1,21 @@
+@import '@/assets/scss/share.scss';
+
+.header__wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: to-rem(52px);
+  background: $header-bg;
+  color: $light;
+  font-size: $font-big;
+}
+
+.header__arrow {
+  position: absolute;
+  left: to-rem(10px);
+  width: to-rem(30px);
+  height: to-rem(30px);
+  background: url("./images/arrow.svg") no-repeat center center /contain;
+}

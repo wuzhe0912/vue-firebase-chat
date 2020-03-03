@@ -1,0 +1,106 @@
+@import '@/assets/scss/share.scss';
+
+.login__wrap {
+  display: flex;
+  background: $login-bg;
+  width: 100%;
+  min-height: 100vh;
+  opacity: .8;
+  justify-content: center;
+  color: $light;
+  padding: to-rem(10px) 0;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat__logo {
+  margin-top: to-rem(97px);
+  width: to-rem(260px);
+  height: to-rem(130px);
+  background: url("./images/login.svg") no-repeat center center /contain;
+}
+
+.status__title {
+  display: flex;
+  justify-content: space-between;
+  margin-top: to-rem(30px);
+  width: to-rem(230px);
+}
+
+.status__checkbox input[type="radio"] {
+  display: none;
+}
+
+.status__checkbox input[type="radio"] + label {
+  &::before {
+    content: "";
+    display: inline-block;
+    width: to-rem(15px);
+    height: to-rem(15px);
+    margin-right: to-rem(3px);
+    border-radius: 50%;
+    background-color: $light;
+    cursor: pointer;
+  }
+}
+
+.checkbox__txt {
+  display: flex;
+  cursor: pointer;
+}
+
+.status__checkbox input[type="radio"]:checked + label {
+  &::before {
+    background-color: $checked-bg;
+    border: 1px solid $light;
+  }
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login__input {
+  margin-top: to-rem(48px);
+  width: to-rem(292px);
+  height: to-rem(28px);
+  background-color: transparent;
+
+  &::placeholder {
+    color: $light;
+  }
+}
+
+.check__name {
+  border-bottom: 1px solid $warn;
+
+  &::placeholder {
+    color: $warn;
+  }
+
+  &:focus {
+    border-bottom-color: $blue-bg;
+  }
+}
+
+.login__btn {
+  margin-top: to-rem(132px);
+  background: $btn-dark;
+}
+
+.login__txt {
+  margin-top: to-rem(72px);
+  font-size: $font-mini;
+}
+
+.service__txt {
+  color: $warn;
+  font-weight: bold;
+  text-decoration: underline;
+}

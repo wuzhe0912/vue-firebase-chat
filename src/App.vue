@@ -1,20 +1,24 @@
 <template lang="pug">
   div#app
-    router-view
+    Header.layout__header(v-if="$route.meta.hasHeader")
+    .layout__wrap
+      router-view
 </template>
 
+<script>
+import Header from '@/components/Header'
+
+export default {
+  components: {
+    Header
+  },
+
+  data () {
+    return {
+    }
+  }
+}
+</script>
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'montserrat', sans-serif;
-}
-
-#app {
-  min-height: 100vh;
-}
 </style>

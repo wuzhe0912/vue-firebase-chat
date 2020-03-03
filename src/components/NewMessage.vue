@@ -4,6 +4,7 @@
       label(for="new-message") New Message (Enter to add)：
       input(type="text" name="new-message" v-model="newMessage")
       p.red-text(v-if="feedback") {{ feedback }}
+      //- button.btn.teal(@click="addMessage") Press
 </template>
 
 <script>
