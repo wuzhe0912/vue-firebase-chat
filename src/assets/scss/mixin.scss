@@ -2,3 +2,23 @@
 @function to-rem($px) {
   @return ($px / 16px) * 1rem;
 }
+
+@mixin position ($type, $top: n, $right: n, $bottom: n, $left: n) {
+  position: $type;
+
+  @if $top != n {
+    top: $top;
+  }
+
+  @if $right != n {
+    right: $right;
+  }
+
+  @if $bottom != n {
+    bottom: $bottom;
+  }
+
+  @if $left != n {
+    left: $left;
+  }
+}

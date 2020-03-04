@@ -18,6 +18,12 @@
   }
 }
 
+.has__selected {
+  color: $light;
+  background: $btn-dark;
+  opacity: .7;
+}
+
 .start__btn {
   margin-top: to-rem(254px);
   background: $header-bg;

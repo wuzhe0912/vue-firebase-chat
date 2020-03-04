@@ -1,0 +1,59 @@
+@import '@/assets/scss/share.scss';
+
+.send__wrap {
+  @include position(fixed, n, 0, 0, 0);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $chat-height;
+  background: $send-bg;
+}
+
+.icon__plus {
+  background: url('./images/plus.svg');
+}
+
+.input__wrap {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: to-rem(4px);
+    right: to-rem(18px);
+    display: block;
+    width: to-rem(30px);
+    height: to-rem(30px);
+    background: url('./images/expression.svg');
+  }
+}
+
+.send__input {
+  min-width: to-rem(255px);
+  height: to-rem(37px);
+  margin: 0 to-rem(10px);
+  border-radius: $radius;
+  background-color: $light;
+  // text-indent 文字首行縮進
+  text-indent: to-rem(15px);
+  font-size: $font-normal;
+  cursor: pointer;
+}
+
+.hasMessage {
+  min-width: to-rem(284px);
+}
+
+.icon__camera {
+  background: url('./images/camera.svg');
+}
+
+.icon__mic {
+  background: url('./images/mic.svg');
+  margin-left: to-rem(10px);
+}
+
+.icon__send {
+  background: url('./images/send.svg');
+}

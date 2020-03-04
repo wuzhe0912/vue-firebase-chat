@@ -1,0 +1,47 @@
+@import '@/assets/scss/share.scss';
+
+.hall__wrap {
+  min-width: to-rem(320px);
+  max-width: to-rem(667px);
+}
+
+.message__container {
+  padding: to-rem(17px) to-rem(10px);
+}
+
+.list__wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: to-rem(15px);
+}
+
+.list__name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: to-rem(30px);
+  height: to-rem(30px);
+  background-color: $blue-bg;
+  border-radius: 50%;
+  color: $light;
+}
+
+.list__content {
+  display: flex;
+  flex-direction: column;
+  margin-left: to-rem(10px);
+  background-color: $send-bg;
+  padding: to-rem(8px) to-rem(15px);
+  border-radius: $radius;
+  max-width: to-rem(400px);
+}
+
+.list__txt {
+  font-size: $font-normal;
+}
+
+.list__time {
+  margin-top: to-rem(5px);
+  font-size: $font-mini;
+  text-align: right;
+}

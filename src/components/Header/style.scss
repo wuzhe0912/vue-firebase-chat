@@ -1,21 +1,37 @@
 @import '@/assets/scss/share.scss';
 
 .header__wrap {
+  @include position(fixed, 0, 0, n, 0);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   width: 100%;
-  height: to-rem(52px);
+  height: $header;
   background: $header-bg;
   color: $light;
   font-size: $font-big;
 }
 
-.header__arrow {
+.header__icon {
   position: absolute;
-  left: to-rem(10px);
   width: to-rem(30px);
   height: to-rem(30px);
-  background: url("./images/arrow.svg") no-repeat center center /contain;
+  cursor: pointer;
+}
+
+
+.back__arrow {
+  left: to-rem(10px);
+  background: url("./images/arrow.svg") no-repeat;
+}
+
+.mobile {
+  right: to-rem(40px);
+  background: url("./images/mobile.svg") no-repeat;
+}
+
+.down__arrow {
+  right: to-rem(10px);
+  background: url("./images/down-arrow.svg") no-repeat;
 }

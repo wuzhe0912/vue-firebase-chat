@@ -44,7 +44,7 @@ export default {
   methods: {
     enterMode () {
       if (this.name) {
-        this.$router.push({ name: 'Mode', params: { name: this.name } })
+        this.$router.push({ name: 'Mode', query: { name: this.name } })
       } else this.feedback = true
     }
   }

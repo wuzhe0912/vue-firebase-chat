@@ -1,16 +1,19 @@
 <template lang="pug">
   div#app
-    Header.layout__header(v-if="$route.meta.hasHeader")
-    .layout__wrap
+    bodyHeader(v-if="$route.meta.hasHeader")
+    .layout__wrap(:class="{ noHeader: !$route.meta.hasHeader, noChat: !$route.meta.hasChat }")
       router-view
+    bodyChat(v-if="$route.meta.hasChat")
 </template>
 
 <script>
-import Header from '@/components/Header'
+import bodyHeader from '@/components/header'
+import bodyChat from '@/components/send-chat'
 
 export default {
   components: {
-    Header
+    bodyHeader,
+    bodyChat
   },
 
   data () {

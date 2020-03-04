@@ -67,6 +67,19 @@ input {
   overflow: auto;
   width: 100%;
   min-height: 100vh;
+  padding: $header 0 $chat-height;
+
+  &.noHeader {
+    padding: 0 0 $chat-height;
+  }
+
+  &.noChat {
+    padding: $header 0 0;
+  }
+
+  &.noHeader.noChat {
+    padding: 0;
+  }
 }
 
 .form__input {
@@ -90,8 +103,19 @@ input {
   height: to-rem(54px);
   color: $light;
   text-align: center;
-  border-radius: 30px;
+  border-radius: $radius;
   font-size: $font-big;
   cursor: pointer;
 }
 
+.warn__txt {
+  color: $warn;
+  margin-top: to-rem(5px);
+  text-align: center;
+  font-size: $font-mini;
+}
+
+.icon {
+  width: to-rem(30px);
+  height: to-rem(30px);  
+}

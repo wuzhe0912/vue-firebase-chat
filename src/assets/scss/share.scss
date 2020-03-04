@@ -9,3 +9,10 @@ $font-big: $font-normal * 1.25;          // 20px
 $font-large: $font-normal * 1.5;         // 24px
 $font-huge: $font-normal * 2.75;         // 44px
 $font-mega: $font-normal * 4.5;          // 72px
+
+// height
+$header: to-rem(52px);
+$chat-height: to-rem(55px);
+
+// border-radius
+$radius: to-rem(30px);

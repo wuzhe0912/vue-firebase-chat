@@ -1,10 +1,17 @@
 <template lang="pug">
-  div Chat
+  div.chat__wrap
+    hallMode
 </template>
 
 <script>
+import hallMode from '@/components/hall-mode'
+
 export default {
   name: 'Chat',
+  components: {
+    hallMode
+  },
+
   data () {
     return {
     }
