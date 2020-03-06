@@ -1,0 +1,29 @@
+@import '@/assets/scss/share.scss';
+
+.register__wrap {
+  display: flex;
+  flex-direction: column;
+  margin-top: to-rem(70px);
+}
+
+.register__input {
+  @include breakpoint($iphone5, true) {
+    width: to-rem(345px);
+  }
+
+  width: to-rem(305px);
+  height: to-rem(54px);
+  font-size: $font-big;
+  border-bottom: 1px solid $btn-border;
+  margin-bottom: to-rem(20px);
+  text-align: left;
+}
+
+.register__btn {
+  margin-top: to-rem(30px);
+  background: $header-bg;
+
+  &:hover {
+    background: $blue-bg;
+  }
+}

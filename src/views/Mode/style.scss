@@ -2,13 +2,26 @@
 
 .btn__list {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   margin-top: to-rem(53px);
 }
 
+.btn__title {
+  display: flex;
+  flex-direction: column;
+  font-size: $font-mini;
+  margin-bottom: to-rem(3px);
+}
+
 .mode__btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: $btn-dark;
-  margin-top: to-rem(20px);
+  margin-bottom: to-rem(20px);
   border: 1px solid $btn-border;
 
   &:hover {
@@ -18,6 +31,11 @@
   }
 }
 
+.go__register {
+  font-size: $font-small;
+  color: $blue-bg;
+}
+
 .has__selected {
   color: $light;
   background: $btn-dark;
@@ -25,7 +43,19 @@
 }
 
 .start__btn {
-  margin-top: to-rem(254px);
+  @include breakpoint($iphone5, true) {
+    margin-top: to-rem(228px);
+  }
+
+  margin-top: to-rem(128px);
   background: $header-bg;
   color: $light;
+}
+
+.register__txt {
+  margin-top: to-rem(5px);
+}
+
+.tip__txt {
+  color: $blue-bg;
 }

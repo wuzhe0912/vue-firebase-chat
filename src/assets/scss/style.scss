@@ -99,7 +99,11 @@ input {
 }
 
 .btn {
-  width: to-rem(345px);
+  @include breakpoint($iphone5, true) {
+    width: to-rem(345px);
+  }
+
+  width: to-rem(305px);
   height: to-rem(54px);
   color: $light;
   text-align: center;

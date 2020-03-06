@@ -35,7 +35,7 @@
   display: none;
 }
 
-.status__checkbox input[type="radio"] + label {
+.status__checkbox input + label {
   &::before {
     content: "";
     display: inline-block;
@@ -53,7 +53,7 @@
   cursor: pointer;
 }
 
-.status__checkbox input[type="radio"]:checked + label {
+.isSelected input + label {
   &::before {
     background-color: $checked-bg;
     border: 1px solid $light;

@@ -35,3 +35,20 @@
   right: to-rem(10px);
   background: url("./images/down-arrow.svg") no-repeat;
 }
+
+.header__txt {
+  position: absolute;
+  cursor: pointer;
+
+  &:hover {
+    color: $btn-dark;
+  }
+}
+
+.header__register {
+  right: to-rem(90px);
+}
+
+.header__login {
+  right: to-rem(30px);
+}

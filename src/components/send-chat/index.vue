@@ -1,7 +1,7 @@
 <template lang="pug">
   div.send__wrap
     i.icon.icon__plus
-    div.input__wrap
+    form.input__wrap(@submit.prevent="addMessage")
       input.send__input(
         type="text"
         placeholder="輸入訊息"
@@ -14,14 +14,41 @@
       i.icon.icon__camera
       i.icon.icon__mic
     template(v-else)
-      i.icon.icon__send
+      button.icon.icon__send(@click="addMessage()")
 </template>
 
 <script>
+import database from '@/firebase/init'
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
-      sendMessage: ''
+      sendMessage: '',
+      feedback: null
+    }
+  },
+
+  computed: {
+    ...mapState([
+      'userInfo'
+    ])
+  },
+
+  methods: {
+    addMessage () {
+      if (this.sendMessage) {
+        // firebase 對應的資料庫上添加內容
+        database.collection('messages').add({
+          content: this.sendMessage,
+          name: this.$route.query.userName,
+          timestamp: Date.now()
+        }).catch(err => {
+          console.log(err)
+        })
+        this.sendMessage = ''
+        this.feedback = null
+      }
     }
   }
 }

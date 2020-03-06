@@ -7,6 +7,9 @@
     template(v-if="$route.name === 'Chat'")
       div.header__icon.mobile
       div.header__icon.down__arrow
+    template(v-else-if="$route.name === 'Mode'")
+      span.header__txt.header__register(@click="goRegister('register')") 註冊
+      span.header__txt.header__login(@click="goRegister('login')") 登入
 </template>
 
 <script>
@@ -30,6 +33,10 @@ export default {
   methods: {
     routerAction () {
       this.$router.go(-1)
+    },
+
+    goRegister (val) {
+      this.$router.push({ name: 'Register', query: { userStatus: val } })
     }
   }
 }

@@ -1,7 +1,7 @@
 <template lang="pug">
   div.hall__wrap
-    div.message__container
-      div.message__list(v-for="node in messageData" :key="node.id")
+    ul.message__container
+      li.message__list(v-for="node in messageData" :key="node.id")
         div.list__wrap
           //- charAt() 返回字串中的對應位數文字，根據()中的參數決定
           div.list__name

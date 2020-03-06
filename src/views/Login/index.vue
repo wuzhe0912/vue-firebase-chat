@@ -3,10 +3,10 @@
     section.login__container
       div.chat__logo
       div.status__title
-        div.status__checkbox
+        div.status__checkbox(@click="selectName('enterName')" :class="{ isSelected: !nickName }")
           input(type="radio" value="" v-model="name")
           label.checkbox__txt 記住我
-        div.status__checkbox
+        div.status__checkbox(@click="selectName('nickName')" :class="{ isSelected: nickName }")
           input(type="radio" value="匿名" v-model="name")
           label.checkbox__txt 我要匿名
       form.login__form(@submit.prevent="enterMode")
@@ -31,7 +31,8 @@ export default {
     return {
       name: '',
       feedback: false,
-      checked: false
+      checked: false,
+      nickName: false
     }
   },
 
@@ -42,9 +43,19 @@ export default {
   },
 
   methods: {
+    selectName (val) {
+      if (val === 'nickName') {
+        this.nickName = true
+        this.name = '匿名'
+      } else {
+        this.nickName = false
+        this.name = ''
+      }
+    },
+
     enterMode () {
       if (this.name) {
-        this.$router.push({ name: 'Mode', query: { name: this.name } })
+        this.$router.push({ name: 'Mode', query: { userName: this.name } })
       } else this.feedback = true
     }
   }
