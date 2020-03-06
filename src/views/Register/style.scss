@@ -15,8 +15,12 @@
   height: to-rem(54px);
   font-size: $font-big;
   border-bottom: 1px solid $btn-border;
-  margin-bottom: to-rem(20px);
+  margin-bottom: to-rem(5px);
   text-align: left;
+}
+
+.danger {
+  border-bottom: 1px solid $warn;
 }
 
 .register__btn {

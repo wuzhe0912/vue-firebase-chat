@@ -123,3 +123,14 @@ input {
   width: to-rem(30px);
   height: to-rem(30px);  
 }
+
+.form__item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: to-rem(20px);
+}
+
+.form__error {
+  font-size: $font-mini;
+  color: $warn;
+}

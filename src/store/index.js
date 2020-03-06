@@ -47,6 +47,7 @@ export default new Vuex.Store({
           payload.email, payload.password
         ).then(res => {
           console.log(3)
+          this.$router.push({ name: 'Mode' })
           // let userId = firebaseAuth.currentUser.uid
           // firebaseDB.ref('users/' + userId).once('value', snapshot => {
           //   let userDetail = snapshot.val()
