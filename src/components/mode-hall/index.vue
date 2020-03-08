@@ -1,5 +1,6 @@
 <template lang="pug">
   div.chat__wrap
+    //- div(@click="handleScroll()") 123
     ul.room__container(v-loading="loading")
       li.room__list(v-for="node in messageData" :key="node.id")
         div.list__wrap
@@ -46,6 +47,10 @@ export default {
             this.loading = false
           } else this.loading = true
         })
+        setTimeout(() => {
+          let item = document.querySelector('.chat__wrap').scrollHeight
+          window.scrollTo(0, item)
+        }, 100)
       })
     }
   }

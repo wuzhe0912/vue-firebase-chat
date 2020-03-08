@@ -69,6 +69,13 @@ export default {
         this.newMessage = ''
         this.feedback = null
       }
+      this.handleScroll()
+    },
+    handleScroll () {
+      setTimeout(() => {
+        let item = document.querySelector('.send__wrap').scrollTop
+        window.scrollTo(0, item)
+      }, 100)
     }
   }
 }

@@ -19,7 +19,7 @@ export default {
   name: 'mode-personal',
   data () {
     return {
-      loading: true
+      loading: false
     }
   },
 
@@ -29,6 +29,12 @@ export default {
         this.loading = false
         this.getMessages(this.$route.query.key)
       }
+    },
+    messageData (newVal, oldVal) {
+      setTimeout(() => {
+        let item = document.querySelector('.chat__wrap').scrollHeight
+        window.scrollTo(0, item)
+      }, 100)
     }
   },
 
@@ -41,12 +47,6 @@ export default {
 
   mounted () {
     this.getMessages(this.$route.query.key)
-  },
-
-  created () {
-    setTimeout(() => {
-      this.loading = false
-    }, 1500)
   },
 
   methods: {
