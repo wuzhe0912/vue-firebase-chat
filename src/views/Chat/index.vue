@@ -1,19 +1,23 @@
 <template lang="pug">
   div.chat__wrap
-    hallMode
+    modeHall(v-if="checkMode === 'hall'")
+    modePersonal(v-else)
 </template>
 
 <script>
-import hallMode from '@/components/hall-mode'
+import modeHall from '@/components/mode-hall'
+import modePersonal from '@/components/mode-personal'
 
 export default {
   name: 'Chat',
   components: {
-    hallMode
+    modeHall,
+    modePersonal
   },
 
   data () {
     return {
+      checkMode: this.$route.query.mode
     }
   }
 }

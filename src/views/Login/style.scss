@@ -92,6 +92,10 @@
 .login__btn {
   margin-top: to-rem(132px);
   background: $btn-dark;
+
+  &:hover {
+    opacity: .8;
+  }
 }
 
 .login__txt {

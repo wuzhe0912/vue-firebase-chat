@@ -46,9 +46,19 @@
 }
 
 .header__register {
-  right: to-rem(90px);
+  @include breakpoint($mobile, true) {
+    right: to-rem(80px);
+  }
+
+  font-size: $font-normal;
+  right: to-rem(50px);
 }
 
 .header__login {
-  right: to-rem(30px);
+  @include breakpoint($mobile, true) {
+    right: to-rem(30px);
+  }
+
+  font-size: $font-normal;
+  right: to-rem(10px);
 }

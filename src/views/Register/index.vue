@@ -47,8 +47,35 @@
             span.form__error(v-if="!$v.registerFormData.passwordCheck.sameAsPassword") 請確認密碼是否相同
             span.form__error(v-if="!$v.registerFormData.passwordCheck.required") 此欄位必填
         button.btn.register__btn 註冊
+        div.status__txt 已有帳號？立刻
+          span.status__subTxt(@click="changeStatus('login')") 登入
     template(v-else)
-      form.register__wrap login
+      form.register__wrap(@submit.prevent="submitLoginForm")
+        label.form__item
+          input.register__input(
+            type="email"
+            v-model="loginFormData.email"
+            placeholder="電子郵件"
+            @blur="$v.loginFormData.email.$touch()"
+            :class="{ danger: $v.loginFormData.email.$error }"
+          )
+          template(v-if="$v.loginFormData.email.$error")
+            span.form__error(v-if="!$v.loginFormData.email.email") 請確認 Email 格式
+            span.form__error(v-if="!$v.loginFormData.email.required") 此欄位必填
+        label.form__item
+          input.register__input(
+            type="password"
+            v-model="loginFormData.password"
+            placeholder="密碼"
+            @blur="$v.loginFormData.password.$touch()"
+            :class="{ danger: $v.loginFormData.password.$error }"
+          )
+          template(v-if="$v.loginFormData.password.$error")
+            span.form__error(v-if="!$v.loginFormData.password.minLength") 最小長度需6個字
+            span.form__error(v-if="!$v.loginFormData.password.required") 此欄位必填
+        button.btn.register__btn 登入
+        div.status__txt 還沒有帳號？立刻
+          span.status__subTxt(@click="changeStatus('register')") 註冊
 </template>
 
 <script>
@@ -115,7 +142,19 @@ export default {
       this.$v.registerFormData.$touch()
       if (this.$v.registerFormData.$error) return
       await this.registerUser(this.registerFormData)
-      console.log(4)
+      await this.loginUser(this.registerFormData)
+      this.$router.push({ name: 'Mode' })
+    },
+
+    async submitLoginForm () {
+      this.$v.loginFormData.$touch()
+      if (this.$v.loginFormData.$error) return
+      await this.loginUser(this.loginFormData)
+      this.$router.push({ name: 'Mode' })
+    },
+
+    changeStatus (val) {
+      this.checkUserStatus = val
     }
   }
 }

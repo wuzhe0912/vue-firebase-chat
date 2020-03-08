@@ -1,0 +1,53 @@
+@import '@/assets/scss/share.scss';
+
+.list__wrap {
+  width: 100%;
+}
+
+.list__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: to-rem(8px) to-rem(16px);
+  min-height: to-rem(56px);
+  border-top: 1px solid rgba(0, 0, 0, .12);
+  cursor: pointer;
+
+  &:hover {
+    background: $send-bg;
+  }
+}
+
+.list__name {
+  display: flex;
+  width: 100%;
+  font-size: $font-big;
+}
+
+.name__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: to-rem(40px);
+  min-height: to-rem(40px);
+  background: $blue-bg;
+  color: $light;
+  border-radius: 50%;
+}
+
+.name__txt {
+  display: flex;
+  align-items: center;
+  margin-left: to-rem(16px);
+}
+
+.online__txt {
+  background: $blue-bg;
+  padding: to-rem(10px);
+  color: $light;
+  border-radius: 20px;;
+}
+
+.offline__txt {
+  background: $grey-bg;
+}

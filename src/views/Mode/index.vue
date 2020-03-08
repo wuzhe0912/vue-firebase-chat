@@ -8,7 +8,7 @@
         :class="{ 'has__selected': isSelected === i }"
         @click="selectBtn(node.code, i)"
       ) {{ node.name }}
-        router-link.go__register(v-if="node.code !== 'hall'" :to="{ name: 'Register' }") (僅限註冊會員使用)
+        span.go__register(v-if="node.code !== 'hall' && !signIn") (僅限註冊會員使用)
       button.btn.start__btn(@click="goChat()") 開始聊天
       p.warn__txt(v-if="feedback") {{ feedback }}
       p.register__txt(v-if="registerFeedback") {{ registerFeedback }}
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Mode',
   data () {
@@ -23,20 +25,39 @@ export default {
       btnList: [
         { code: 'hall', name: '大廳' },
         { code: 'one', name: '一對一' },
-        { code: 'custom', name: '自創聊天室--開發中' }
+        { code: 'custom', name: '自創聊天室' }
       ],
       isSelected: '',
       mode: '',
       feedback: null,
       registerFeedback: null,
-      isLogin: false
+      signIn: false
     }
   },
 
   watch: {
     isSelected (newVal, oldVal) {
       if (newVal !== '') this.feedback = null
+    },
+    userInfo (newVal, oldVal) {
+      if (newVal.userId) {
+        this.signIn = true
+      } else {
+        this.signIn = false
+      }
     }
+  },
+
+  computed: {
+    ...mapState([
+      'userInfo'
+    ])
+  },
+
+  created () {
+    if (this.userInfo.userId) {
+      this.signIn = true
+    } else this.signIn = false
   },
 
   methods: {
@@ -62,15 +83,21 @@ export default {
       } else this.feedback = '請選擇任一模式'
     },
     checkStatus () {
-      if (this.isLogin) {
-        // 登入
-      } else {
-        // 未登入
+      if (!this.signIn) {
+        // 未登入狀態
         if (this.mode === 'hall') {
-          this.$router.push({
-            name: 'Chat', query: { mode: this.mode, userName: this.$route.query.userName }
-          })
+          this.$router.push({ name: 'Chat', query: { mode: this.mode, userName: this.$route.query.userName } })
         } else this.registerFeedback = '還沒註冊嗎？'
+      } else {
+        // 登入狀態
+        if (this.mode === 'hall') {
+          this.$router.push({ name: 'Chat', query: { mode: this.mode, userName: this.userInfo.name } })
+        } else if (this.mode === 'one') {
+          // 進入會員列表大廳
+          this.$router.push({ name: 'UserList' })
+        } else {
+          this.$router.push({ name: 'RoomList' })
+        }
       }
     }
   }

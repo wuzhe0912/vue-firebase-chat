@@ -31,3 +31,13 @@
     background: $blue-bg;
   }
 }
+
+.status__txt {
+  text-align: center;
+  margin-top: to-rem(5px);
+}
+
+.status__subTxt {
+  color: $blue-bg;
+  cursor: pointer;
+}

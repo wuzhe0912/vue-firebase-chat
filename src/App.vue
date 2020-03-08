@@ -9,16 +9,23 @@
 <script>
 import bodyHeader from '@/components/header'
 import bodyChat from '@/components/send-chat'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
     bodyHeader,
     bodyChat
   },
-
   data () {
-    return {
-    }
+    return {}
+  },
+  methods: {
+    ...mapActions([
+      'handleAuthStateChanged'
+    ])
+  },
+  mounted () {
+    this.handleAuthStateChanged()
   }
 }
 </script>

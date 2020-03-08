@@ -1,14 +1,5 @@
 @import '@/assets/scss/share.scss';
 
-.hall__wrap {
-  min-width: to-rem(320px);
-  max-width: to-rem(667px);
-}
-
-.message__container {
-  padding: to-rem(17px) to-rem(10px);
-}
-
 .list__wrap {
   display: flex;
   align-items: center;
@@ -44,4 +35,23 @@
   margin-top: to-rem(5px);
   font-size: $font-mini;
   text-align: right;
+}
+
+.from__me {
+  display: flex;
+  justify-content: flex-end;
+
+  .list__wrap {
+    flex-direction: row-reverse;
+  }
+
+  .list__name {
+    margin-left: to-rem(10px);
+  }
+
+  .list__content {
+    margin-left: initial;
+    background: $blue-bg;
+    color: $light;
+  }
 }

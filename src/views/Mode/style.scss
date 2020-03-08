@@ -44,10 +44,10 @@
 
 .start__btn {
   @include breakpoint($iphone5, true) {
-    margin-top: to-rem(228px);
+    margin-top: to-rem(188px);
   }
 
-  margin-top: to-rem(128px);
+  margin-top: to-rem(108px);
   background: $header-bg;
   color: $light;
 }

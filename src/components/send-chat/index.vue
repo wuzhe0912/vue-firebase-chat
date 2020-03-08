@@ -7,10 +7,10 @@
         placeholder="輸入訊息"
         onfocus="this.placeholder = ''"
         onblur="this.placeholder = '輸入訊息'"
-        v-model="sendMessage"
-        :class="{ hasMessage: sendMessage !== '' }"
+        v-model="newMessage"
+        :class="{ hasMessage: newMessage !== '' }"
       )
-    template(v-if="sendMessage === ''")
+    template(v-if="newMessage === ''")
       i.icon.icon__camera
       i.icon.icon__mic
     template(v-else)
@@ -19,12 +19,12 @@
 
 <script>
 import database from '@/firebase/init'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data () {
     return {
-      sendMessage: '',
+      newMessage: '',
       feedback: null
     }
   },
@@ -36,17 +36,37 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'sendMessages'
+    ]),
+
     addMessage () {
-      if (this.sendMessage) {
-        // firebase 對應的資料庫上添加內容
-        database.collection('messages').add({
-          content: this.sendMessage,
-          name: this.$route.query.userName,
-          timestamp: Date.now()
-        }).catch(err => {
-          console.log(err)
-        })
-        this.sendMessage = ''
+      if (this.newMessage) {
+        // 匿名大廳模式
+        if (this.$route.query.mode === 'hall') {
+          // firebase 對應的資料庫上添加內容
+          database.collection('messages').add({
+            content: this.newMessage,
+            name: this.$route.query.userName,
+            timestamp: Date.now()
+          }).catch(err => {
+            console.log(err)
+          })
+        } else if (this.$route.query.mode === 'personal') {
+          // 個人聊天模式
+          this.sendMessages({
+            messages: {
+              text: this.newMessage,
+              from: 'me',
+              timestamp: Date.now()
+            },
+            // 聊天對象的 key
+            otherKey: this.$route.query.key
+          })
+        } else {
+          console.log('施工中')
+        }
+        this.newMessage = ''
         this.feedback = null
       }
     }

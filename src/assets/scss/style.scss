@@ -134,3 +134,13 @@ input {
   font-size: $font-mini;
   color: $warn;
 }
+
+// chat room share style
+.chat__wrap {
+  min-width: to-rem(320px);
+  max-width: to-rem(667px);
+}
+
+.room__container {
+  padding: to-rem(17px) to-rem(10px);
+}
