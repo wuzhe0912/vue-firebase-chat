@@ -11,19 +11,14 @@
           div.weather-box
             span.temp {{ Math.round(weather.main.temp) }}&#176;c
             span.weather {{ weather.weather[0].main }}
-        Welcome
 </template>
 
 <script>
 // @ is an alias to /src
-import Welcome from '@/components/Welcome.vue'
 import moment from 'moment'
 
 export default {
   name: 'Home',
-  components: {
-    Welcome
-  },
 
   data () {
     return {
