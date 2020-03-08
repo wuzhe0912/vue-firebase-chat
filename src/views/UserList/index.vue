@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.list__wrap
+  div.list__wrap(v-loading="loading")
     ul.list__container
       li.list__content(v-if="node.name" v-for="(node, index) in userList" @click="goPersonalChat(index, node.name)")
         div.list__name
@@ -15,13 +15,21 @@ export default {
   name: 'UserList',
 
   data () {
-    return {}
+    return {
+      loading: true
+    }
   },
 
   computed: {
     ...mapGetters([
       'userList'
     ])
+  },
+
+  created () {
+    setTimeout(() => {
+      this.loading = false
+    }, 1500)
   },
 
   methods: {

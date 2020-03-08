@@ -1,6 +1,6 @@
 <template lang="pug">
   div.chat__wrap
-    ul.room__container
+    ul.room__container(v-loading="loading")
       li.room__list(v-for="node in messageData" :class="{ from__me: node.from === 'me' }")
         div.list__wrap
           div.list__name
@@ -19,7 +19,16 @@ export default {
   name: 'mode-personal',
   data () {
     return {
-      // messageData: []
+      loading: true
+    }
+  },
+
+  watch: {
+    userInfo (newVal, oldVal) {
+      if (newVal.userId) {
+        this.loading = false
+        this.getMessages(this.$route.query.key)
+      }
     }
   },
 
@@ -32,6 +41,12 @@ export default {
 
   mounted () {
     this.getMessages(this.$route.query.key)
+  },
+
+  created () {
+    setTimeout(() => {
+      this.loading = false
+    }, 1500)
   },
 
   methods: {

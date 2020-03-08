@@ -64,7 +64,7 @@ export default new Vuex.Store({
         ).then(res => {
           return resolve()
         }).catch(err => {
-          console.log(err)
+          console.log(err.message)
           return reject(err)
         })
       })
@@ -74,41 +74,43 @@ export default new Vuex.Store({
       firebaseAuth.signOut()
     },
     // 檢查使用者登入狀態
-    handleAuthStateChanged ({ commit, dispatch, state }) {
-      firebaseAuth.onAuthStateChanged(node => {
-        if (node) {
-          // 使用者處於登入狀態 => sign in
-          const userId = firebaseAuth.currentUser.uid
-          // 進行快照，確認用戶資料
-          firebaseDB.ref('users/' + userId).once('value', snapshot => {
-            const userInfo = snapshot.val()
-            // 變更用戶資訊狀態
-            commit('SET_USER_INFO', {
-              name: userInfo.name,
-              email: userInfo.email,
-              userId: userId
+    handleAuthStateChanged ({ commit, dispatch, state }, otherKey) {
+      return new Promise((resolve, reject) => {
+        firebaseAuth.onAuthStateChanged(node => {
+          if (node) {
+            // 使用者處於登入狀態 => sign in
+            const userId = firebaseAuth.currentUser.uid
+            // 進行快照，確認用戶資料
+            firebaseDB.ref('users/' + userId).once('value', snapshot => {
+              const userInfo = snapshot.val()
+              // 變更用戶資訊狀態
+              commit('SET_USER_INFO', {
+                name: userInfo.name,
+                email: userInfo.email,
+                userId: userId
+              })
             })
-          })
-          // 用戶登入後，改變資料庫中用戶的狀態
-          dispatch('updateUser', {
-            userId: userId,
-            updateStatus: {
-              online: true
-            }
-          })
-          // 當資料庫改變，重新取得用戶列表
-          dispatch('getUserList')
-        } else {
-          // 用戶登出前，先更新資料庫狀態，再初始化帳戶資訊
-          dispatch('updateUser', {
-            userId: state.userInfo.userId,
-            updateStatus: {
-              online: false
-            }
-          })
-          // 使用者處於未登入狀態或是登出 => sign out
-          commit('SET_USER_INFO', {})
-        }
+            // 用戶登入後，改變資料庫中用戶的狀態
+            dispatch('updateUser', {
+              userId: userId,
+              updateStatus: {
+                online: true
+              }
+            })
+            // 當資料庫改變，重新取得用戶列表
+            dispatch('getUserList')
+          } else {
+            // 用戶登出前，先更新資料庫狀態，再初始化帳戶資訊
+            dispatch('updateUser', {
+              userId: state.userInfo.userId,
+              updateStatus: {
+                online: false
+              }
+            })
+            // 使用者處於未登入狀態或是登出 => sign out
+            commit('SET_USER_INFO', {})
+          }
+        })
       })
     },
     // 檢查會員當前是否登入狀態
@@ -159,8 +161,6 @@ export default new Vuex.Store({
       firebaseDB.ref('chats/' + userId + '/' + otherKey).on('child_added', snapshot => {
         let messageDetails = snapshot.val()
         let messageKey = snapshot.key
-        console.log('messageDetails', messageDetails)
-        console.log('messageKey', messageKey)
         commit('SET_MESSAGES', {
           messageDetails,
           messageKey

@@ -1,7 +1,7 @@
 <template lang="pug">
   div.container
     template(v-if="checkUserStatus === 'register'")
-      form.register__wrap(@submit.prevent="submitRegisterForm")
+      form.register__wrap(v-loading="loading" @submit.prevent="submitRegisterForm")
         label.form__item
           input.register__input(
             type="email"
@@ -46,11 +46,11 @@
           template(v-if="$v.registerFormData.passwordCheck.$error")
             span.form__error(v-if="!$v.registerFormData.passwordCheck.sameAsPassword") 請確認密碼是否相同
             span.form__error(v-if="!$v.registerFormData.passwordCheck.required") 此欄位必填
-        button.btn.register__btn 註冊
+        button.btn.register__btn(v-loading="loading") 註冊
         div.status__txt 已有帳號？立刻
           span.status__subTxt(@click="changeStatus('login')") 登入
     template(v-else)
-      form.register__wrap(@submit.prevent="submitLoginForm")
+      form.register__wrap(v-loading="loading" @submit.prevent="submitLoginForm")
         label.form__item
           input.register__input(
             type="email"
@@ -109,7 +109,8 @@ export default {
     return {
       registerFormData: {},
       loginFormData: {},
-      checkUserStatus: ''
+      checkUserStatus: '',
+      loading: false
     }
   },
 
@@ -141,15 +142,19 @@ export default {
       // 前端進行驗證檢查
       this.$v.registerFormData.$touch()
       if (this.$v.registerFormData.$error) return
+      this.loading = true
       await this.registerUser(this.registerFormData)
       await this.loginUser(this.registerFormData)
+      this.loading = false
       this.$router.push({ name: 'Mode' })
     },
 
     async submitLoginForm () {
       this.$v.loginFormData.$touch()
       if (this.$v.loginFormData.$error) return
+      this.loading = true
       await this.loginUser(this.loginFormData)
+      this.loading = false
       this.$router.push({ name: 'Mode' })
     },
 

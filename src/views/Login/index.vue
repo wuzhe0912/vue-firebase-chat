@@ -19,7 +19,7 @@
           v-model="name"
           :class="{ check__name: feedback }"
         )
-        button.btn.login__btn 試玩登入
+        button.btn.login__btn(v-loading="loading") 試玩登入
       footer.login__txt 登入即表明已閱讀並同意
         span.service__txt 服務條款
 </template>
@@ -32,7 +32,8 @@ export default {
       name: '',
       feedback: false,
       checked: false,
-      nickName: false
+      nickName: false,
+      loading: false
     }
   },
 
