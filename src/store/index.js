@@ -62,9 +62,8 @@ export default new Vuex.Store({
         firebaseAuth.signInWithEmailAndPassword(
           payload.email, payload.password
         ).then(res => {
-          return resolve()
+          return resolve(res)
         }).catch(err => {
-          console.log(err.message)
           return reject(err)
         })
       })

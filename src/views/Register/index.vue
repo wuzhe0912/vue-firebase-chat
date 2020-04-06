@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.container
+  .container
     template(v-if="checkUserStatus === 'register'")
       form.register__wrap(v-loading="loading" @submit.prevent="submitRegisterForm")
         label.form__item
@@ -47,7 +47,7 @@
             span.form__error(v-if="!$v.registerFormData.passwordCheck.sameAsPassword") 請確認密碼是否相同
             span.form__error(v-if="!$v.registerFormData.passwordCheck.required") 此欄位必填
         button.btn.register__btn(v-loading="loading") 註冊
-        div.status__txt 已有帳號？立刻
+        .status__txt 已有帳號？立刻
           span.status__subTxt(@click="changeStatus('login')") 登入
     template(v-else)
       form.register__wrap(v-loading="loading" @submit.prevent="submitLoginForm")
@@ -74,8 +74,9 @@
             span.form__error(v-if="!$v.loginFormData.password.minLength") 最小長度需6個字
             span.form__error(v-if="!$v.loginFormData.password.required") 此欄位必填
         button.btn.register__btn 登入
-        div.status__txt 還沒有帳號？立刻
+        .status__txt 還沒有帳號？立刻
           span.status__subTxt(@click="changeStatus('register')") 註冊
+        .error__txt(v-if="errorMessage") 請檢查帳號密碼資訊是否正確
 </template>
 
 <script>
@@ -110,7 +111,8 @@ export default {
       registerFormData: {},
       loginFormData: {},
       checkUserStatus: '',
-      loading: false
+      loading: false,
+      errorMessage: ''
     }
   },
 
@@ -153,9 +155,13 @@ export default {
       this.$v.loginFormData.$touch()
       if (this.$v.loginFormData.$error) return
       this.loading = true
-      await this.loginUser(this.loginFormData)
-      this.loading = false
-      this.$router.push({ name: 'Mode' })
+      await this.loginUser(this.loginFormData).then((res) => {
+        this.loading = false
+        this.$router.push({ name: 'Mode' })
+      }).catch((err) => {
+        this.errorMessage = err
+        this.loading = false
+      })
     },
 
     changeStatus (val) {

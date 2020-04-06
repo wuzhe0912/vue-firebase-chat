@@ -41,3 +41,9 @@
   color: $blue-bg;
   cursor: pointer;
 }
+
+.error__txt {
+  margin-top: to-rem(5px);
+  text-align: center;
+  color: $warn;
+}
