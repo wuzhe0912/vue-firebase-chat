@@ -24,8 +24,8 @@ export default {
     return {
       btnList: [
         { code: 'hall', name: '大廳' },
-        { code: 'one', name: '一對一' },
-        { code: 'custom', name: '自創聊天室' }
+        { code: 'one', name: '一對一' }
+        // { code: 'custom', name: '自創聊天室' }
       ],
       isSelected: '',
       mode: '',
