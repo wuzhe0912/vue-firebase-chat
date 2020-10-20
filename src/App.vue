@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import bodyHeader from '@/components/header'
+import bodyHeader from '@/components/Header'
 import bodyChat from '@/components/send-chat'
 import { mapActions } from 'vuex'
 
